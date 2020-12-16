@@ -4,25 +4,37 @@ def index(request):
     print('INDEX PAGE REQUESTED')
     return render(request, 'index.html')
 
-def result(request):
+def redir(request):
     if request.method == "POST":
-        print("POST REQUEST MADE TO RESULT")
-        your_name = request.POST["your_name"]
-        location = request.POST["location"]
-        language = request.POST["language"]
-        end = request.POST["end"]
-        frameworks = request.POST.getlist("frameworks")
-        comments = request.POST["comments"]
-        context = {
-            'name': your_name,
-            'location': location,
-            'language': language,
-            'end': end,
-            'frameworks': frameworks,
-            'comments': comments,
-        }
-        return render(request, 'results.html', context)
-    if request.method == "GET":
-        print("GET REQUEST MADE TO RESULT. INVALID AND REDIRECTING.")
-        redirect("/")
+        print("POST REQUEST MADE FROM SURVEY")
+        request.session["your_name"] = request.POST["your_name"]
+        request.session["location"] = request.POST["location"]
+        request.session["language"] = request.POST["language"]
+        request.session["end"] = request.POST["end"]
+        request.session["frameworks"] = request.POST.getlist("frameworks")
+        request.session["comments"] = request.POST["comments"]
+        return redirect('/result')
+
+def result(request):
+    print("REDIRECTION TO RESULT PAGE")
+    # if request.method == "POST":
+    #     print("REDIRECTION TO RESULT PAGE")
+    #     your_name = request.POST["your_name"]
+    #     location = request.POST["location"]
+    #     language = request.POST["language"]
+    #     end = request.POST["end"]
+    #     frameworks = request.POST.getlist("frameworks")
+    #     comments = request.POST["comments"]
+    #     context = {
+    #         'name': your_name,
+    #         'location': location,
+    #         'language': language,
+    #         'end': end,
+    #         'frameworks': frameworks,
+    #         'comments': comments,
+    #     }
+    return render(request, 'results.html')
+    # if request.method == "GET":
+    #     print("GET REQUEST MADE TO RESULT. INVALID AND REDIRECTING.")
+    #     redirect("/")
 
