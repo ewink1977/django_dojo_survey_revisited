@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Results!</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="content">
+        <h2>Submitted Info</h2>
+        <p class="results">Name : {{name}}</p>
+        <p class="results">Dojo Location : {{location}}</p>
+        <p class="results">Favorite Language : {{language}}</p>
+        <p class="results">Favorite End : {{end}}</p>
+        <p class="results">Known Frameworks: 
+        {% for framework in frameworks %}
+            {{framework}} 
+        {% endfor %}
+        </p>
+        <p class="results">Comments : {{comments}}</p>
+        <a href="/"><button class="results">Go Back</button></a>
+    </div>
+</body>
+</html>
