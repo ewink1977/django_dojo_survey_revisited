@@ -14,27 +14,12 @@ def redir(request):
         request.session["frameworks"] = request.POST.getlist("frameworks")
         request.session["comments"] = request.POST["comments"]
         return redirect('/result')
+    if request.method == "GET":
+        print("GET REQUEST MADE TO RESULT. INVALID AND REDIRECTING.")
+        redirect("/")
 
 def result(request):
     print("REDIRECTION TO RESULT PAGE")
-    # if request.method == "POST":
-    #     print("REDIRECTION TO RESULT PAGE")
-    #     your_name = request.POST["your_name"]
-    #     location = request.POST["location"]
-    #     language = request.POST["language"]
-    #     end = request.POST["end"]
-    #     frameworks = request.POST.getlist("frameworks")
-    #     comments = request.POST["comments"]
-    #     context = {
-    #         'name': your_name,
-    #         'location': location,
-    #         'language': language,
-    #         'end': end,
-    #         'frameworks': frameworks,
-    #         'comments': comments,
-    #     }
     return render(request, 'results.html')
-    # if request.method == "GET":
-    #     print("GET REQUEST MADE TO RESULT. INVALID AND REDIRECTING.")
-    #     redirect("/")
+    
 
