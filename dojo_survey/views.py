@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 
 def index(request):
     print('INDEX PAGE REQUESTED')
-    return render(request, 'index.html')
+    return render(request, 'dojo/index.html')
 
 def redir(request):
     if request.method == "POST":
@@ -20,6 +20,6 @@ def redir(request):
 
 def result(request):
     print("REDIRECTION TO RESULT PAGE")
-    return render(request, 'results.html')
+    return render(request, 'dojo/results.html')
     
 
